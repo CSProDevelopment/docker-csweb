@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  php:
+    build: 
+      context: './php/'
+      args:
+       PHP_VERSION: ${PHP_VERSION}
+    networks:
+      - frontend
+      - backend
+    volumes:
+      - ${CSWEB_ROOT}/:/var/www/html/
+    ports: 
+      - "80:80"
+    depends_on: 
+      - mysql
+    container_name: php
+  mysql:
+    image: mysql:${MYSQL_VERSION:-latest}
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+            - data:/var/lib/mysql
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    container_name: mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: "${DB_ROOT_PASSWORD}"
+    ports:
+      - '8080:80'
+    networks:
+      - frontend
+      - backend
+    container_name:
+      phpmyadmin
+    depends_on:
+      - mysql
+networks:
+  frontend:
+  backend:
+volumes:
+    data:

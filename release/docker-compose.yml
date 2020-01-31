@@ -1,0 +1,60 @@
+version: "3.7"
+services:
+  csweb:
+    build: 
+      context: './csweb/'
+      args:
+        MYSQL_DATABASE: "${DB_NAME}"
+        MYSQL_USER: "${DB_USERNAME}"
+        MYSQL_PASSWORD: "${DB_PASSWORD}"
+        DEFAULT_TIMEZONE: "${TIMEZONE}" 
+    volumes:
+      - csweb_files:/var/www/html/files
+    networks:
+      - frontend
+      - backend
+    ports: 
+      - "80:80"
+    depends_on: 
+      - mysql
+    container_name: csweb
+  mysql:
+    image: mysql:${MYSQL_VERSION:-latest}
+    command: ['--default-authentication-plugin=mysql_native_password']
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./mysql/db-init:/docker-entrypoint-initdb.d
+    networks:
+      - backend
+    environment:
+      MYSQL_ROOT_PASSWORD: "${DB_ROOT_PASSWORD}"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USERNAME}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+    container_name: mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: "${DB_ROOT_PASSWORD}"
+    ports:
+      - '8080:80'
+    networks:
+      - frontend
+      - backend
+    container_name:
+      phpmyadmin
+    depends_on:
+      - mysql
+networks:
+  frontend:
+  backend:
+volumes:
+    db_data:
+    csweb_files:
+

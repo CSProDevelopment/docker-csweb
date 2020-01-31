@@ -16,5 +16,34 @@ This project contains files that can be used to run CSWeb in a docker container.
 * MySQL or MariaDB server - the docker images contain PHP and Apache properly configured for CSWeb however they do not contain a database. Per Docker best practice, the database should be run in a separate container which can be linked to the CSWeb container. The easiest way to do this is to use one of the docker-compose.yml files which create images for CSWeb, MySQL and PhpMyAdmin and run them all.
 
 # Setup - release
+* Edit the environment file release/.env to set your own passwords for the MySQL database (DB_ROOT_PASSWORD and DB_PASSWORD)
+* In a shell/command prompt enter the docker-csweb/release directory and start docker compose:
+```bash
+cd release
+docker-compose up
+```
+* In a web browser go to http://localhost/ui and login using the default username and password: _admin_ and _adminadmin_
+* You may want to change the admin password from the default
+* Note that there is no need to do run the the configuration step, the docker image comes already configured
 
 # Setup - dev
+* Edit the environment file dev/.env to set your own passwords for the MySQL database (DB_ROOT_PASSWORD and DB_PASSWORD)
+* Also in dev/.env modify CSWWEB_ROOT to point to the directory containing the CSWeb source code on your computer
+* In a shell/command prompt enter the docker-csweb/dev directory and start docker compose:
+```bash
+cd dev
+docker-compose up
+```
+* In a web browser go to http://localhost/setup/configure.php
+* Fill out the configuration form as follows:
+
+	|                      |                                          |
+	|----------------------|------------------------------------------|
+	| Database name        | cspro                                    |
+	| Hostname             | mysql                                    |
+	| Database username    | cspro                                    |
+    | Datapase password    | *use DB_PASSWORD from .env file*         |
+    | CSWeb admin password | *choose a password for csweb admin user* |
+	| Timezone             | *pick a timezone*                        |
+	| Path to files        | /var/www/html/files                      |
+	| CSWeb API URL	       | http://localhost/api                     |
