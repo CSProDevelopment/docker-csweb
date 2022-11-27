@@ -28,7 +28,8 @@ RUN set -eux; \
 	rm csweb.zip
 
 # configuration file
-
+RUN mkdir -p /var/www/html/src/api/app/
+RUN mkdir -p  /var/www/html/src/ui/src/
 
 RUN set -eux; \
 echo "<?php define('DBHOST', 'mysql'); define('DBUSER', '$MYSQL_USER'); define('DBPASS', '$MYSQL_PASSWORD'); define('DBNAME', '$MYSQL_DATABASE'); define('ENABLE_OAUTH', true); define('FILES_FOLDER', '/var/www/html/files'); define('SERVER_DEVICE_ID', 'http://localhost/api/'); define('DEFAULT_TIMEZONE', '$DEFAULT_TIMEZONE'); define('MAX_EXECUTION_TIME', '300'); ?>" > /var/www/html/src/api/app/config.php && \
