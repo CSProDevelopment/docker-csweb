@@ -22,7 +22,7 @@ This project contains files that can be used to run CSWeb in a docker container.
 cd release
 docker-compose up
 ```
-* In a web browser go to http://localhost/ui and login using the default username and password: _admin_ and _adminadmin_
+* In a web browser go to http://localhost/ and login using the default username and password: _admin_ and _adminadmin_
 * You may want to change the admin password from the default
 * Note that there is no need to do run the the configuration step, the docker image comes already configured
 
@@ -34,7 +34,15 @@ docker-compose up
 cd dev
 docker-compose up
 ```
-* In a web browser go to http://localhost/setup/configure.php
+* set log_bin_trust_function_creators=1
+```bash
+docker ps
+docker exec -it <container_name> bash
+mysql -u root -p
+SET GLOBAL log_bin_trust_function_creators=1;
+```
+* In a web browser go to http://localhost/
+* Pass server requirements
 * Fill out the configuration form as follows:
 
 	|                      |                                          |

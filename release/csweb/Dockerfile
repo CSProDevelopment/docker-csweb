@@ -31,6 +31,4 @@ RUN set -eux; \
 
 
 RUN set -eux; \
-echo "<?php define('DBHOST', 'mysql'); define('DBUSER', '$MYSQL_USER'); define('DBPASS', '$MYSQL_PASSWORD'); define('DBNAME', '$MYSQL_DATABASE'); define('ENABLE_OAUTH', true); define('FILES_FOLDER', '/var/www/html/files'); define('SERVER_DEVICE_ID', 'http://localhost/api/'); define('DEFAULT_TIMEZONE', '$DEFAULT_TIMEZONE'); define('MAX_EXECUTION_TIME', '300'); ?>" > /var/www/html/src/api/app/config.php && \
-echo "<?php define('API_URL', 'http://localhost/api/'); define('DEFAULT_TIMEZONE', '$DEFAULT_TIMEZONE');?>" > /var/www/html/src/ui/src/config.php
-
+echo "<?php define('DBHOST', 'mysql'); define('DBUSER', '$MYSQL_USER'); define('DBPASS', '$MYSQL_PASSWORD'); define('DBNAME', '$MYSQL_DATABASE'); define('ENABLE_OAUTH', true); define('FILES_FOLDER', '/var/www/html/files'); define('DEFAULT_TIMEZONE', '$DEFAULT_TIMEZONE'); define('MAX_EXECUTION_TIME', '300'); define('API_URL', 'http://localhost/api/'); define('CSWEB_LOG_LEVEL' , 'error'); define('CSWEB_PROCESS_CASES_LOG_LEVEL', 'error'); ?>" > /var/www/html/src/AppBundle/config.php
