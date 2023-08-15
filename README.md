@@ -32,7 +32,7 @@ docker-compose up
 ## Setup - dev
 
 * Edit the environment file dev/.env to set your own passwords for the MySQL database (DB_ROOT_PASSWORD and DB_PASSWORD)
-* Also in dev/.env modify CSWWEB_ROOT to point to the directory containing the CSWeb source code on your computer
+* Also in dev/.env modify CSWEB_ROOT to point to the directory containing the CSWeb source code on your computer
 * In a shell/command prompt enter the docker-csweb/dev directory and start docker compose:
 
 ```bash
@@ -58,7 +58,7 @@ SET GLOBAL log_bin_trust_function_creators=1;
 | Database name        | cspro                                    |
 | Hostname             | mysql                                    |
 | Database username    | cspro                                    |
-| Datapase password    | _use DB_PASSWORD from .env file_         |
+| Database password    | _use DB_PASSWORD from .env file_         |
 | CSWeb admin password | _choose a password for csweb admin user_ |
 | Timezone             | _pick a timezone_                        |
 | Path to files        | /var/www/html/files                      |
