@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Generation Time: May 16, 2023 at 08:55 PM
+-- Generation Time: Aug 15, 2023 at 08:58 PM
 -- Server version: 8.0.33
--- PHP Version: 8.1.17
+-- PHP Version: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -53,6 +53,32 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `cspro_binary_sync_history`
+--
+
+CREATE TABLE `cspro_binary_sync_history` (
+  `id` bigint UNSIGNED NOT NULL,
+  `binary_data_signature` char(32) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `sync_history_id` int UNSIGNED NOT NULL,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cspro_binary_sync_history_archive`
+--
+
+CREATE TABLE `cspro_binary_sync_history_archive` (
+  `id` bigint UNSIGNED NOT NULL,
+  `binary_data_signature` char(32) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `sync_history_id` int UNSIGNED NOT NULL,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `cspro_config`
 --
 
@@ -68,8 +94,8 @@ CREATE TABLE `cspro_config` (
 --
 
 INSERT INTO `cspro_config` (`name`, `value`, `modified_time`, `created_time`) VALUES
-('schema_version', '6', '2023-05-16 20:54:14', '2023-05-16 20:54:14'),
-('server_device_id', 'a18e7854-98b5-4b22-b8d9-4148a03d047a', '2023-05-16 20:54:14', '2023-05-16 20:54:14');
+('schema_version', '7', '2023-08-15 20:56:45', '2023-08-15 20:56:45'),
+('server_device_id', '371c3766-157a-4c91-8621-7915d1a31d2a', '2023-08-15 20:56:45', '2023-08-15 20:56:45');
 
 --
 -- Triggers `cspro_config`
@@ -114,6 +140,7 @@ CREATE TABLE `cspro_dictionaries_schema` (
   `schema_name` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `schema_user_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `schema_password` varbinary(255) NOT NULL,
+  `additional_config` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `map_info` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `modified_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `created_time` timestamp NULL DEFAULT '1971-01-01 00:00:00'
@@ -126,6 +153,29 @@ DELIMITER $$
 CREATE TRIGGER `tr_dictionaries_schema` BEFORE INSERT ON `cspro_dictionaries_schema` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP
 $$
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cspro_log`
+--
+
+CREATE TABLE `cspro_log` (
+  `id` bigint UNSIGNED NOT NULL,
+  `channel` varchar(255) DEFAULT NULL,
+  `level_name` varchar(255) DEFAULT NULL,
+  `message` longtext,
+  `context` longtext,
+  `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `cspro_log`
+--
+
+INSERT INTO `cspro_log` (`id`, `channel`, `level_name`, `message`, `context`, `created_time`) VALUES
+(1, 'request', 'ERROR', 'Uncaught PHP Exception Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: \"No route found for \"GET http://localhost/bower_components/font-awesome/css/font-awesome.min.css\" (from \"http://localhost/setup/complete.php\")\" at /var/www/html/vendor/symfony/http-kernel/EventListener/RouterListener.php line 135', '{\"exception\":\"[object] (Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException(code: 0): No route found for \\\"GET http://localhost/bower_components/font-awesome/css/font-awesome.min.css\\\" (from \\\"http://localhost/setup/complete.php\\\") at /var/www/html/vendor/symfony/http-kernel/EventListener/RouterListener.php:135, Symfony\\\\Component\\\\Routing\\\\Exception\\\\ResourceNotFoundException(code: 0): No routes found for \\\"/bower_components/font-awesome/css/font-awesome.min.css/\\\". at /var/www/html/vendor/symfony/routing/Matcher/Dumper/CompiledUrlMatcherTrait.php:74)\"} []\n', '2023-08-15 20:58:09'),
+(2, 'request', 'ERROR', 'Uncaught PHP Exception Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: \"No route found for \"GET http://localhost/bower_components/bootstrap/dist/css/bootstrap.min.css\" (from \"http://localhost/setup/complete.php\")\" at /var/www/html/vendor/symfony/http-kernel/EventListener/RouterListener.php line 135', '{\"exception\":\"[object] (Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException(code: 0): No route found for \\\"GET http://localhost/bower_components/bootstrap/dist/css/bootstrap.min.css\\\" (from \\\"http://localhost/setup/complete.php\\\") at /var/www/html/vendor/symfony/http-kernel/EventListener/RouterListener.php:135, Symfony\\\\Component\\\\Routing\\\\Exception\\\\ResourceNotFoundException(code: 0): No routes found for \\\"/bower_components/bootstrap/dist/css/bootstrap.min.css/\\\". at /var/www/html/vendor/symfony/routing/Matcher/Dumper/CompiledUrlMatcherTrait.php:74)\"} []\n', '2023-08-15 20:58:09');
 
 -- --------------------------------------------------------
 
@@ -145,14 +195,14 @@ CREATE TABLE `cspro_permissions` (
 --
 
 INSERT INTO `cspro_permissions` (`id`, `name`, `modified_time`, `created_time`) VALUES
-(1, 'data_all', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(2, 'apps_all', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(3, 'users_all', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(4, 'roles_all', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(5, 'reports_all', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(6, 'dictionary_sync_upload', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(7, 'dictionary_sync_download', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(8, 'settings_all', '2023-05-16 20:54:13', '2023-05-16 20:54:13');
+(1, 'data_all', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(2, 'apps_all', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(3, 'users_all', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(4, 'roles_all', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(5, 'reports_all', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(6, 'dictionary_sync_upload', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(7, 'dictionary_sync_download', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(8, 'settings_all', '2023-08-15 20:56:44', '2023-08-15 20:56:44');
 
 --
 -- Triggers `cspro_permissions`
@@ -180,8 +230,8 @@ CREATE TABLE `cspro_roles` (
 --
 
 INSERT INTO `cspro_roles` (`id`, `name`, `modified_time`, `created_time`) VALUES
-(1, 'Standard User', '2023-05-16 20:54:13', '2023-05-16 20:54:13'),
-(2, 'Administrator', '2023-05-16 20:54:13', '2023-05-16 20:54:13');
+(1, 'Standard User', '2023-08-15 20:56:44', '2023-08-15 20:56:44'),
+(2, 'Administrator', '2023-08-15 20:56:44', '2023-08-15 20:56:44');
 
 --
 -- Triggers `cspro_roles`
@@ -247,6 +297,8 @@ CREATE TABLE `cspro_sync_history` (
   `dictionary_id` smallint UNSIGNED NOT NULL,
   `universe` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `direction` enum('put','get','both') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_case_revision` int UNSIGNED DEFAULT NULL,
+  `last_case_guid` binary(16) DEFAULT NULL,
   `created_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -273,7 +325,7 @@ CREATE TABLE `cspro_users` (
 --
 
 INSERT INTO `cspro_users` (`username`, `password`, `first_name`, `last_name`, `email`, `phone`, `role`, `modified_time`, `created_time`) VALUES
-('admin', '$2y$10$4AcMrY736BEjcnuJ/fgGHuX/tHssHcfKGnbbuAk0iL6665oEkcS42', 'System', 'Administrator', NULL, NULL, 2, '2023-05-16 20:54:14', '2023-05-16 20:54:14');
+('admin', '$2y$10$te6MApejtxJI5qY34Bhpc.lbWB8TDwc0qu/uo30CJYsKTQy0TS/6O', 'System', 'Administrator', NULL, NULL, 2, '2023-08-15 20:56:45', '2023-08-15 20:56:45');
 
 --
 -- Triggers `cspro_users`
@@ -302,7 +354,7 @@ CREATE TABLE `oauth_access_tokens` (
 --
 
 INSERT INTO `oauth_access_tokens` (`access_token`, `client_id`, `user_id`, `expires`, `scope`) VALUES
-('5d82eb8f4161b590142b0a886596327c68fb2a41', 'cspro_android', 'admin', '2023-05-16 21:55:21', NULL);
+('16dbbd375da9f5310d31be5655ab0cb1ae3422c1', 'cspro_android', 'admin', '2023-08-15 21:57:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -372,7 +424,7 @@ CREATE TABLE `oauth_refresh_tokens` (
 --
 
 INSERT INTO `oauth_refresh_tokens` (`refresh_token`, `client_id`, `user_id`, `expires`, `scope`) VALUES
-('9b47678c750219e0cac1a419587d2368285e07a6', 'cspro_android', 'admin', '2023-05-30 20:55:21', NULL);
+('80c4805af939f274ed91da3fd4f183e860552ac0', 'cspro_android', 'admin', '2023-08-29 20:57:36', NULL);
 
 -- --------------------------------------------------------
 
@@ -410,6 +462,22 @@ ALTER TABLE `cspro_apps`
   ADD UNIQUE KEY `name` (`name`);
 
 --
+-- Indexes for table `cspro_binary_sync_history`
+--
+ALTER TABLE `cspro_binary_sync_history`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `sync_history_id` (`sync_history_id`);
+
+--
+-- Indexes for table `cspro_binary_sync_history_archive`
+--
+ALTER TABLE `cspro_binary_sync_history_archive`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`),
+  ADD KEY `sync_history_id` (`sync_history_id`);
+
+--
 -- Indexes for table `cspro_config`
 --
 ALTER TABLE `cspro_config`
@@ -428,6 +496,13 @@ ALTER TABLE `cspro_dictionaries`
 ALTER TABLE `cspro_dictionaries_schema`
   ADD PRIMARY KEY (`dictionary_id`),
   ADD UNIQUE KEY `schema_name` (`schema_name`);
+
+--
+-- Indexes for table `cspro_log`
+--
+ALTER TABLE `cspro_log`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `cspro_permissions`
@@ -518,10 +593,28 @@ ALTER TABLE `cspro_apps`
   MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `cspro_binary_sync_history`
+--
+ALTER TABLE `cspro_binary_sync_history`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cspro_binary_sync_history_archive`
+--
+ALTER TABLE `cspro_binary_sync_history_archive`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `cspro_dictionaries`
 --
 ALTER TABLE `cspro_dictionaries`
   MODIFY `id` smallint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cspro_log`
+--
+ALTER TABLE `cspro_log`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cspro_permissions`
@@ -544,6 +637,18 @@ ALTER TABLE `cspro_sync_history`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cspro_binary_sync_history`
+--
+ALTER TABLE `cspro_binary_sync_history`
+  ADD CONSTRAINT `cspro_sync_history_archive_id_constraint` FOREIGN KEY (`sync_history_id`) REFERENCES `cspro_sync_history` (`revision`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `cspro_binary_sync_history_archive`
+--
+ALTER TABLE `cspro_binary_sync_history_archive`
+  ADD CONSTRAINT `cspro_sync_history_id_constraint` FOREIGN KEY (`sync_history_id`) REFERENCES `cspro_sync_history` (`revision`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `cspro_dictionaries_schema`
