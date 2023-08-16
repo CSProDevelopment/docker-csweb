@@ -63,3 +63,39 @@ SET GLOBAL log_bin_trust_function_creators=1;
 | Timezone             | _pick a timezone_                        |
 | Path to files        | /var/www/html/files                      |
 | CSWeb API URL        | <http://localhost/api>                   |
+
+## Basic docker commands
+
+Commands were tested in powershell.
+
+### Views
+
+```powershell
+# view containers
+docker ps
+# view images
+docker images
+# view persistent data (e.g., databases)
+docker volume ls
+```
+
+### Tear down
+
+```powershell
+docker compose down
+# delete all containers
+docker container rm -f $(docker container ls -aq)
+# delete all images
+docker image rm -f $(docker image ls -aq)
+```
+
+### Delete persistent data (e.g., databases)
+
+```powershell
+# delete all volumes that aren't associated with an existing container
+docker volume prune
+# delete specific volumes
+docker volume rm dev_data
+docker volume rm release_csweb_files
+docker volume rm release_csweb_db_data
+```
