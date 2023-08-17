@@ -66,16 +66,16 @@ SET GLOBAL log_bin_trust_function_creators=1;
 
 ## Basic docker commands
 
-Commands were tested in powershell.
+All commands were used in powershell
 
-### Views
+### Lists
 
 ```powershell
-# view containers
+# list containers
 docker ps
-# view images
+# list images
 docker images
-# view persistent data (e.g., databases)
+# list volumes (e.g., database data)
 docker volume ls
 ```
 
@@ -83,18 +83,16 @@ docker volume ls
 
 ```powershell
 docker compose down
-# delete all containers
-docker container rm -f $(docker container ls -aq)
-# delete all images
-docker image rm -f $(docker image ls -aq)
+# remove all unused containers, networks, and images
+docker system prune
 ```
 
-### Delete persistent data (e.g., databases)
+### Remove volumes (e.g., database data)
 
 ```powershell
-# delete all volumes that aren't associated with an existing container
+# remove all unused local volumes
 docker volume prune
-# delete specific volumes
+# remove specific volumes
 docker volume rm dev_data
 docker volume rm release_csweb_files
 docker volume rm release_csweb_db_data
