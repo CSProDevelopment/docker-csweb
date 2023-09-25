@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:8.2-apache
 ARG MYSQL_DATABASE
 ARG MYSQL_USER
 ARG MYSQL_PASSWORD
@@ -22,7 +22,7 @@ RUN set -eux; \
 
 # download and unzip csweb source
 RUN set -eux; \
-	curl -o csweb.zip -fSL https://www2.census.gov/software/cspro/download/csweb.zip; \
+	curl -o csweb.zip -fSL https://www.csprousers.org/downloads/beta/csweb80_beta_20230919.zip; \
 	unzip csweb.zip -d /var/www/html/; \
 	chown -R www-data:www-data /var/www/html; \
 	rm csweb.zip
