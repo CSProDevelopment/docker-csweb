@@ -25,7 +25,7 @@ cd release
 docker-compose up
 ```
 
-* In a web browser go to <http://localhost/> and login using the default username and password: admin and adminadmin
+* In a web browser go to <http://localhost/> and login using the default username and password: _admin_ and _adminadmin_
 * You may want to change the admin password from the default
 * Note that there is no need to do run the the configuration step, the docker image comes already configured
 
