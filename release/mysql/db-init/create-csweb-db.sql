@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `cspro` /*!40100 DEFAULT CHARACTER SET utf8mb4 CO
 USE `cspro`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: localhost    Database: census_new_database
+-- Host: localhost    Database: census_new
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -21,7 +21,6 @@ USE `cspro`;
 -- Table structure for table `cspro_apps`
 --
 
-DROP TABLE IF EXISTS `cspro_apps`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_apps` (
@@ -48,12 +47,26 @@ LOCK TABLES `cspro_apps` WRITE;
 /*!40000 ALTER TABLE `cspro_apps` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cspro_apps` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_apps` BEFORE INSERT ON `cspro_apps` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_binary_sync_history`
 --
 
-DROP TABLE IF EXISTS `cspro_binary_sync_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_binary_sync_history` (
@@ -81,7 +94,6 @@ UNLOCK TABLES;
 -- Table structure for table `cspro_binary_sync_history_archive`
 --
 
-DROP TABLE IF EXISTS `cspro_binary_sync_history_archive`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_binary_sync_history_archive` (
@@ -109,7 +121,6 @@ UNLOCK TABLES;
 -- Table structure for table `cspro_config`
 --
 
-DROP TABLE IF EXISTS `cspro_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_config` (
@@ -127,15 +138,29 @@ CREATE TABLE `cspro_config` (
 
 LOCK TABLES `cspro_config` WRITE;
 /*!40000 ALTER TABLE `cspro_config` DISABLE KEYS */;
-INSERT INTO `cspro_config` VALUES ('schema_version','7','2023-09-26 00:27:44','2023-09-26 00:27:44'),('server_device_id','818a337c-6af5-4bd7-9699-e3f6aca72992','2023-09-26 00:27:44','2023-09-26 00:27:44');
+INSERT INTO `cspro_config` VALUES ('schema_version','7','2023-09-18 17:51:43','2023-09-18 17:51:43'),('server_device_id','3e886bd4-4220-4cd5-a5e5-134b18724645','2023-09-18 17:51:43','2023-09-18 17:51:43');
 /*!40000 ALTER TABLE `cspro_config` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_config` BEFORE INSERT ON `cspro_config` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_dictionaries`
 --
 
-DROP TABLE IF EXISTS `cspro_dictionaries`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_dictionaries` (
@@ -158,12 +183,26 @@ LOCK TABLES `cspro_dictionaries` WRITE;
 /*!40000 ALTER TABLE `cspro_dictionaries` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cspro_dictionaries` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_dictionaries` BEFORE INSERT ON `cspro_dictionaries` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_dictionaries_schema`
 --
 
-DROP TABLE IF EXISTS `cspro_dictionaries_schema`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_dictionaries_schema` (
@@ -190,12 +229,26 @@ LOCK TABLES `cspro_dictionaries_schema` WRITE;
 /*!40000 ALTER TABLE `cspro_dictionaries_schema` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cspro_dictionaries_schema` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_dictionaries_schema` BEFORE INSERT ON `cspro_dictionaries_schema` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_permissions`
 --
 
-DROP TABLE IF EXISTS `cspro_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_permissions` (
@@ -213,15 +266,29 @@ CREATE TABLE `cspro_permissions` (
 
 LOCK TABLES `cspro_permissions` WRITE;
 /*!40000 ALTER TABLE `cspro_permissions` DISABLE KEYS */;
-INSERT INTO `cspro_permissions` VALUES (1,'data_all','2023-09-26 00:27:44','2023-09-26 00:27:44'),(2,'apps_all','2023-09-26 00:27:44','2023-09-26 00:27:44'),(3,'users_all','2023-09-26 00:27:44','2023-09-26 00:27:44'),(4,'roles_all','2023-09-26 00:27:44','2023-09-26 00:27:44'),(5,'reports_all','2023-09-26 00:27:44','2023-09-26 00:27:44'),(6,'dictionary_sync_upload','2023-09-26 00:27:44','2023-09-26 00:27:44'),(7,'dictionary_sync_download','2023-09-26 00:27:44','2023-09-26 00:27:44'),(8,'settings_all','2023-09-26 00:27:44','2023-09-26 00:27:44');
+INSERT INTO `cspro_permissions` VALUES (1,'data_all','2023-09-18 17:51:43','2023-09-18 17:51:43'),(2,'apps_all','2023-09-18 17:51:43','2023-09-18 17:51:43'),(3,'users_all','2023-09-18 17:51:43','2023-09-18 17:51:43'),(4,'roles_all','2023-09-18 17:51:43','2023-09-18 17:51:43'),(5,'reports_all','2023-09-18 17:51:43','2023-09-18 17:51:43'),(6,'dictionary_sync_upload','2023-09-18 17:51:43','2023-09-18 17:51:43'),(7,'dictionary_sync_download','2023-09-18 17:51:43','2023-09-18 17:51:43'),(8,'settings_all','2023-09-18 17:51:43','2023-09-18 17:51:43');
 /*!40000 ALTER TABLE `cspro_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_permissions` BEFORE INSERT ON `cspro_permissions` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_role_dictionary_permissions`
 --
 
-DROP TABLE IF EXISTS `cspro_role_dictionary_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_role_dictionary_permissions` (
@@ -247,12 +314,26 @@ LOCK TABLES `cspro_role_dictionary_permissions` WRITE;
 /*!40000 ALTER TABLE `cspro_role_dictionary_permissions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cspro_role_dictionary_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_role_dictionary_permissions` BEFORE INSERT ON `cspro_role_dictionary_permissions` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_role_permissions`
 --
 
-DROP TABLE IF EXISTS `cspro_role_permissions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_role_permissions` (
@@ -275,12 +356,26 @@ LOCK TABLES `cspro_role_permissions` WRITE;
 /*!40000 ALTER TABLE `cspro_role_permissions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `cspro_role_permissions` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_role_permissions` BEFORE INSERT ON `cspro_role_permissions` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_roles`
 --
 
-DROP TABLE IF EXISTS `cspro_roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_roles` (
@@ -299,15 +394,29 @@ CREATE TABLE `cspro_roles` (
 
 LOCK TABLES `cspro_roles` WRITE;
 /*!40000 ALTER TABLE `cspro_roles` DISABLE KEYS */;
-INSERT INTO `cspro_roles` VALUES (1,'Standard User','2023-09-26 00:27:44','2023-09-26 00:27:44'),(2,'Administrator','2023-09-26 00:27:44','2023-09-26 00:27:44');
+INSERT INTO `cspro_roles` VALUES (1,'Standard User','2023-09-18 17:51:43','2023-09-18 17:51:43'),(2,'Administrator','2023-09-18 17:51:43','2023-09-18 17:51:43');
 /*!40000 ALTER TABLE `cspro_roles` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_roles` BEFORE INSERT ON `cspro_roles` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `cspro_sync_history`
 --
 
-DROP TABLE IF EXISTS `cspro_sync_history`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_sync_history` (
@@ -339,7 +448,6 @@ UNLOCK TABLES;
 -- Table structure for table `cspro_users`
 --
 
-DROP TABLE IF EXISTS `cspro_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cspro_users` (
@@ -364,15 +472,29 @@ CREATE TABLE `cspro_users` (
 
 LOCK TABLES `cspro_users` WRITE;
 /*!40000 ALTER TABLE `cspro_users` DISABLE KEYS */;
-INSERT INTO `cspro_users` VALUES ('admin','$2y$10$QcNKWFEwiVLCYuq0oZ4Mn.0EBOJz5U2Neqo.1DhVLNDnM4doCZlJy','System','Administrator',NULL,NULL,2,'2023-09-26 00:27:44','2023-09-26 00:27:44');
+INSERT INTO `cspro_users` VALUES ('admin','$2y$10$.fyYq1doeTAOO3uIIRu0WOiTrVsKcz.Zc6ctXjOVXHZInMzfqb0JW','System','Administrator',NULL,NULL,2,'2023-09-18 17:51:43','2023-09-18 17:51:43');
 /*!40000 ALTER TABLE `cspro_users` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = '' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `tr_cspro_users` BEFORE INSERT ON `cspro_users` FOR EACH ROW SET NEW.`created_time` = CURRENT_TIMESTAMP */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `oauth_access_tokens`
 --
 
-DROP TABLE IF EXISTS `oauth_access_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_access_tokens` (
@@ -391,7 +513,6 @@ CREATE TABLE `oauth_access_tokens` (
 
 LOCK TABLES `oauth_access_tokens` WRITE;
 /*!40000 ALTER TABLE `oauth_access_tokens` DISABLE KEYS */;
-INSERT INTO `oauth_access_tokens` VALUES ('adc732f875c2c1dde6ef97b4a6bce2ff77b6fe75','cspro_android','admin','2023-09-26 00:28:13',NULL),('bb863b841c72e3ebd392c2003b27d319582f41a4','cspro_android','admin','2023-09-26 00:28:29',NULL);
 /*!40000 ALTER TABLE `oauth_access_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -399,7 +520,6 @@ UNLOCK TABLES;
 -- Table structure for table `oauth_authorization_codes`
 --
 
-DROP TABLE IF EXISTS `oauth_authorization_codes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_authorization_codes` (
@@ -426,7 +546,6 @@ UNLOCK TABLES;
 -- Table structure for table `oauth_clients`
 --
 
-DROP TABLE IF EXISTS `oauth_clients`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_clients` (
@@ -454,7 +573,6 @@ UNLOCK TABLES;
 -- Table structure for table `oauth_jwt`
 --
 
-DROP TABLE IF EXISTS `oauth_jwt`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_jwt` (
@@ -478,7 +596,6 @@ UNLOCK TABLES;
 -- Table structure for table `oauth_refresh_tokens`
 --
 
-DROP TABLE IF EXISTS `oauth_refresh_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_refresh_tokens` (
@@ -497,7 +614,6 @@ CREATE TABLE `oauth_refresh_tokens` (
 
 LOCK TABLES `oauth_refresh_tokens` WRITE;
 /*!40000 ALTER TABLE `oauth_refresh_tokens` DISABLE KEYS */;
-INSERT INTO `oauth_refresh_tokens` VALUES ('f2ececad0d9b0c4a5e0fa72846472eaed0da8b20','cspro_android','admin','2023-10-09 23:28:13',NULL),('936ccbe3227f30054921bd39f240cf582c2979a2','cspro_android','admin','2023-10-09 23:28:29',NULL);
 /*!40000 ALTER TABLE `oauth_refresh_tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -505,7 +621,6 @@ UNLOCK TABLES;
 -- Table structure for table `oauth_scopes`
 --
 
-DROP TABLE IF EXISTS `oauth_scopes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_scopes` (
@@ -527,7 +642,6 @@ UNLOCK TABLES;
 -- Table structure for table `oauth_users`
 --
 
-DROP TABLE IF EXISTS `oauth_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `oauth_users` (
@@ -557,4 +671,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-25 19:28:53
+-- Dump completed on 2023-09-26  9:55:45
