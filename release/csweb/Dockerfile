@@ -8,12 +8,15 @@ ARG DEFAULT_TIMEZONE
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 
 # php-zip support
+# Switch to root user to run sed
+
 RUN set -eux; \
-	sed -i "s#deb http://deb.debian.org/debian buster main#deb http://deb.debian.org/debian buster main contrib non-free#g" /etc/apt/sources.list; \
+	sed -i "s#deb http://deb.debian.org/debian bullseye main#deb http://deb.debian.org/debian bullseye main contrib non-free#g" /etc/apt/sources.list.d/debian.sources; \
 	apt-get update; \
 	apt-get install -y zlib1g-dev libzip-dev unzip; \
 	docker-php-ext-install zip; \
 	docker-php-ext-install pdo_mysql
+
 
 # enable mod_rewrite and allow override from .htacess files
 RUN set -eux; \
@@ -22,7 +25,7 @@ RUN set -eux; \
 
 # download and unzip csweb source
 RUN set -eux; \
-	curl -o csweb.zip -fSL https://www2.census.gov/software/cspro/download/csweb.zip; \
+	curl -o csweb.zip -fSL https://www.csprousers.org/downloads/beta/csweb80_beta_20231113.zip; \
 	unzip csweb.zip -d /var/www/html/; \
 	chown -R www-data:www-data /var/www/html; \
 	rm csweb.zip
