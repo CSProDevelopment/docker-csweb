@@ -4,7 +4,7 @@ Docker &amp; docker compose files for [CSWeb](https://www.csprousers.org/help/CS
 
 [Docker](https://www.docker.com) is a tool for running applications in containers which simplifies testing and deployment. Docker containers can be run locally for testing and can also be easily deployed to the cloud.
 
-This project contains files that can be used to run CSWeb in a docker container. There are two configurations depending on how you want to use CSWeb:
+This project contains files that can be used to run CSWeb 8.0 or above in a docker container. There are two configurations depending on how you want to use CSWeb:
 
 1) release - this setup automatically downloads the latest CSWeb and installs it in the container. If you just want to run CSWeb use this version.
 2) dev - this setup is designed for CSWeb development. It lets you use your own version of CSWeb from a directory that you specify on your local computer. This way you can easily make changes to the CSWeb source code and the container will automatically use any changes you have made. It is up to you to specify the location of the CSWeb source code and place the source code in the directory that you specify.

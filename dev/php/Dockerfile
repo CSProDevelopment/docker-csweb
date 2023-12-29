@@ -7,7 +7,7 @@ FROM php:${PHP_VERSION:+${PHP_VERSION}-}apache
 
 # php-zip support
 RUN set -eux; \
-	sed -i "s#deb http://deb.debian.org/debian buster main#deb http://deb.debian.org/debian buster main contrib non-free#g" /etc/apt/sources.list; \
+	sed -i "s#deb http://deb.debian.org/debian bullseye main#deb http://deb.debian.org/debian bullseye main contrib non-free#g" /etc/apt/sources.list.d/debian.sources; \
 	apt-get update; \
 	apt-get install -y zlib1g-dev libzip-dev unzip; \
 	docker-php-ext-install zip; \
