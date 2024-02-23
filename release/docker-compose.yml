@@ -20,7 +20,7 @@ services:
     container_name: csweb
   mysql:
     image: mysql:${MYSQL_VERSION:-latest}
-    command: ['--default-authentication-plugin=mysql_native_password']
+    command: ['--default-authentication-plugin=mysql_native_password', '--log-bin-trust-function-creators=true']
     restart: always
     ports:
       - "3306:3306"
