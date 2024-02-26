@@ -25,7 +25,7 @@ RUN set -eux; \
 
 # download and unzip csweb source
 RUN set -eux; \
-	curl -o csweb.zip -fSL https://www.csprousers.org/downloads/beta/csweb80_beta_20231113.zip; \
+	curl -o csweb.zip -fSL https://www.csprousers.org/downloads/cspro/csweb8.0.zip; \
 	unzip csweb.zip -d /var/www/html/; \
 	chown -R www-data:www-data /var/www/html; \
 	rm csweb.zip
